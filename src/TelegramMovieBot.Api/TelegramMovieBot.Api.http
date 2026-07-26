@@ -1,0 +1,6 @@
+@TelegramMovieBot.Api_HostAddress = http://localhost:5034
+
+GET {{TelegramMovieBot.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
