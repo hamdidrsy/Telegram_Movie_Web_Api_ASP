@@ -41,6 +41,8 @@ Authorization: Bearer TMDB_ACCESS_TOKEN
 
 ## Adım 2.1 — TMDB erişim anahtarını hazırlama
 
+**Durum: Tamamlandı.** Access Token, .NET User Secrets içinde saklanıyor.
+
 1. [TMDB](https://www.themoviedb.org/) hesabı oluştur.
 2. Hesap ayarlarından API bölümünü aç.
 3. **API Read Access Token** değerini al.
@@ -65,6 +67,8 @@ dotnet user-secrets list `
 Token terminal çıktısında veya ekran görüntüsünde paylaşılmamalıdır.
 
 ## Adım 2.2 — TMDB cevap modellerini oluşturma
+
+**Durum: Tamamlandı.** Ham TMDB modelleri ve dışarı açılacak sade film modeli oluşturuldu.
 
 Oluşturulacak dosyalar:
 
@@ -125,6 +129,8 @@ TMDB'nin ham cevabı doğrudan kullanıcıya döndürülmeyecektir. Böylece dı
 
 ## Adım 2.3 — `TmdbClient` metotlarını yazma
 
+**Durum: Tamamlandı.** Vizyondaki ve gelecek filmler için istemci metotları ve temel istemci testleri eklendi.
+
 `TmdbClient` içine iki metot eklenecektir:
 
 ```csharp
@@ -147,6 +153,8 @@ Kurallar:
 - JSON cevabı boş veya geçersizse anlaşılır bir uygulama hatası üretilmelidir.
 
 ## Adım 2.4 — `MovieService` oluşturma
+
+**Durum: Tamamlandı.** Film filtreleme, sıralama ve sade API modeline dönüştürme servisi eklendi.
 
 Oluşturulacak dosya:
 
@@ -172,6 +180,8 @@ Eksik veriler şu şekilde ele alınmalıdır:
 - Yayın tarihi geçersiz veya yoksa `ReleaseDate` değeri `null` olmalı.
 
 ## Adım 2.5 — Movies Controller oluşturma
+
+**Durum: Tamamlandı.** Vizyondaki ve gelecek filmler endpoint'leri ile sayfa doğrulaması eklendi.
 
 Oluşturulacak dosya:
 
@@ -225,6 +235,8 @@ HTTP 400 Bad Request
 
 ## Adım 2.6 — Hata yönetimi
 
+**Durum: Tamamlandı.** Merkezi hata yakalama ve güvenli `ProblemDetails` cevapları eklendi.
+
 Temel hata senaryoları:
 
 | Durum | API cevabı |
@@ -249,19 +261,21 @@ Canlı ortam hata cevabında şunlar bulunmamalıdır:
 
 En az şu testler yazılmalıdır:
 
-- [ ] TMDB film cevabı doğru modele çevriliyor.
-- [ ] Yetişkin içerik filtreleniyor.
-- [ ] Başlık yoksa orijinal başlık kullanılıyor.
-- [ ] Afiş yolu yoksa `PosterUrl` null oluyor.
-- [ ] Gelecek filmler tarihe göre sıralanıyor.
-- [ ] Vizyondaki filmler popülerliğe göre sıralanıyor.
-- [ ] `page=0` isteği `400` döndürüyor.
-- [ ] TMDB başarısız cevabı başarılı boş liste gibi gösterilmiyor.
-- [ ] İstek iptal edildiğinde `CancellationToken` çalışıyor.
+- [x] TMDB film cevabı doğru modele çevriliyor.
+- [x] Yetişkin içerik filtreleniyor.
+- [x] Başlık yoksa orijinal başlık kullanılıyor.
+- [x] Afiş yolu yoksa `PosterUrl` null oluyor.
+- [x] Gelecek filmler tarihe göre sıralanıyor.
+- [x] Vizyondaki filmler popülerliğe göre sıralanıyor.
+- [x] `page=0` isteği `400` döndürüyor.
+- [x] TMDB başarısız cevabı başarılı boş liste gibi gösterilmiyor.
+- [x] İstek iptal edildiğinde `CancellationToken` çalışıyor.
 
 Testlerde gerçek TMDB API çağrısı yapılmamalıdır. Sahte bir `HttpMessageHandler` veya istemci arayüzü kullanılmalıdır.
 
 ## Adım 2.8 — Elle doğrulama
+
+**Durum: Tamamlandı.** Sağlık, OpenAPI, doğrulama ve gerçek TMDB endpoint'leri yerel API üzerinden kontrol edildi.
 
 Uygulamayı başlat:
 
@@ -296,6 +310,8 @@ GET /health
 - Gelen `page` değeri doğrulanacak.
 
 ## Tamamlanma kriterleri
+
+**Adım 2 tamamlandı.** Aşağıdaki kriterlerin tamamı doğrulandı.
 
 Adım 2 aşağıdaki koşullar sağlandığında tamamlanmış sayılır:
 
