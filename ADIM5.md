@@ -34,10 +34,10 @@ Durum:
 - [x] Secret tabanlı yapılandırma eklendi.
 - [x] Eşzamanlı çift çalışma engellendi.
 - [x] On dakikalık job zaman aşımı eklendi.
-- [ ] GitHub CLI oturumu açıldı.
-- [ ] Repository secret'ları kaydedildi.
-- [ ] Workflow varsayılan branch'e gönderildi.
-- [ ] İlk manuel GitHub Actions çalışması doğrulandı.
+- [x] GitHub CLI oturumu açıldı.
+- [x] Repository secret'ları kaydedildi.
+- [x] Workflow varsayılan branch'e gönderildi.
+- [x] İlk manuel GitHub Actions çalışması doğrulandı.
 
 > Public repository'lerde standart GitHub-hosted runner kullanımı ücretsizdir. Private repository'lerde GitHub Free hesabı aylık 2.000 dakika içerir. Bu workflow günde yalnızca kısa bir job çalıştırır.
 
