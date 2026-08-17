@@ -1,0 +1,49 @@
+name: Daily Movie Notification
+
+on:
+  schedule:
+    - cron: "0 10 * * *"
+      timezone: "Europe/Istanbul"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: daily-movie-notification
+  cancel-in-progress: false
+
+jobs:
+  send-notification:
+    name: Send Telegram movie notification
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    env:
+      DOTNET_ENVIRONMENT: Production
+      Tmdb__AccessToken: ${{ secrets.TMDB_ACCESS_TOKEN }}
+      Telegram__BotToken: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      Telegram__ChatId: ${{ secrets.TELEGRAM_CHAT_ID }}
+      Notification__Enabled: "false"
+      Notification__MaxMoviesPerList: "8"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Restore
+        run: dotnet restore src/TelegramMovieBot.Api/TelegramMovieBot.Api.csproj
+
+      - name: Run notification job once
+        run: >-
+          dotnet run
+          --project src/TelegramMovieBot.Api/TelegramMovieBot.Api.csproj
+          --configuration Release
+          --no-restore
+          --
+          --run-once

@@ -71,6 +71,22 @@ builder.Services
 
 var app = builder.Build();
 
+if (ApplicationMode.IsRunOnce(args))
+{
+    app.Logger.LogInformation("Tek seferlik film bildirim görevi başlatıldı.");
+
+    await using var scope = app.Services.CreateAsyncScope();
+    var notificationService = scope.ServiceProvider
+        .GetRequiredService<IMovieNotificationService>();
+    var sentMessageCount = await notificationService
+        .SendMovieNotificationAsync(CancellationToken.None);
+
+    app.Logger.LogInformation(
+        "Tek seferlik görev tamamlandı. Gönderilen mesaj sayısı: {MessageCount}",
+        sentMessageCount);
+    return;
+}
+
 app.UseExceptionHandler();
 
 if (app.Environment.IsDevelopment())
